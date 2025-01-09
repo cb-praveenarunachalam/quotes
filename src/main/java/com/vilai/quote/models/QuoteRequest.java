@@ -2,7 +2,7 @@ package com.vilai.quote.models;
 
 import java.util.List;
 
-public class QuoteCreateRequest {
+public class QuoteRequest {
 	private String customerId;
 	private long contractStartDate;
 	private long contractEndDate;

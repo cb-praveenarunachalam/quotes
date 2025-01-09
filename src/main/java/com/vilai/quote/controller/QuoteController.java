@@ -17,7 +17,7 @@ public class QuoteController {
 	}
 
 @PostMapping("/")
-public QuoteResponse createQuote(@RequestBody QuoteCreateRequest quoteRequest) {
+public QuoteResponse createQuote(@RequestBody QuoteRequest quoteRequest) {
 	
 		QuoteResponse quoteResponse = new QuoteResponse();
 		
@@ -30,6 +30,26 @@ public QuoteResponse createQuote(@RequestBody QuoteCreateRequest quoteRequest) {
 		quoteResponse.setTcv(tcv);
 		
 		quoteResponse.setStatus("Open");
+		
+		quoteResponse.setItems(quoteRequest.getItems());
+		
+		return quoteResponse;
+	}
+
+	@PostMapping("/convert")
+	public QuoteResponse convertToContract(@RequestBody QuoteRequest quoteRequest) {
+		
+		QuoteResponse quoteResponse = new QuoteResponse();
+		
+		quoteResponse.setNumber(101);
+		quoteResponse.setCustomerId(quoteRequest.getCustomerId());
+		quoteResponse.setContractStartDate(quoteRequest.getContractStartDate());
+		quoteResponse.setContractEndDate(quoteRequest.getContractEndDate());
+		
+		long tcv = quoteRequest.getItems().stream().mapToLong(Item::getPrice).sum();
+		quoteResponse.setTcv(tcv);
+		
+		quoteResponse.setStatus("Closed, Won");
 		
 		quoteResponse.setItems(quoteRequest.getItems());
 		

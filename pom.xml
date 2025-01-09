@@ -51,6 +51,11 @@
 			<artifactId>aero-ai-1.0.0</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.chargebee</groupId>
+			<artifactId>chargebee-java</artifactId>
+			<version>3.28.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
