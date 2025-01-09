@@ -4,7 +4,10 @@ import com.vilai.quote.models.QuotePromptRequest;
 import com.vilai.quote.models.QuotePromptResponse;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/quote")
 public class QuoteController {
@@ -18,8 +21,8 @@ public class QuoteController {
 		
 		QuotePromptResponse.Item item = new QuotePromptResponse.Item();
 		item.setItemPriceName("Enterprise plan");
-		item.setDateFrom(quoteRequest.getContractStartDate());
-		item.setDateTo(quoteRequest.getContractEndDate() + 100000);
+		item.setDateFrom(quoteRequest.getContractStartDate()+ 100000);
+		item.setDateTo(quoteRequest.getContractEndDate() + 100001);
 		item.setCurrencyCode("USD");
 		item.setPeriodUnit("month");
 		item.setPeriod(1);
@@ -29,15 +32,18 @@ public class QuoteController {
 		
 		QuotePromptResponse.Item item2 = new QuotePromptResponse.Item();
 		item2.setItemPriceName("Enterprise plan");
-		item2.setDateFrom(quoteRequest.getContractEndDate() + 100001);
-		item2.setDateTo(quoteRequest.getContractEndDate() + 200000);
+		item2.setDateFrom(quoteRequest.getContractEndDate() + 200001);
+		item2.setDateTo(quoteRequest.getContractEndDate() + 300000);
 		item2.setCurrencyCode("USD");
 		item2.setPeriodUnit("month");
 		item2.setPeriod(1);
 		item2.setPrice(1000);
 		
-		quoteResponse.setItems(Collections.singletonList(item));
-		quoteResponse.setItems(Collections.singletonList(item2));
+		List<QuotePromptResponse.Item> itemList = new ArrayList<>();
+		itemList.add(item);
+		itemList.add(item2);
+		
+		quoteResponse.setItems(itemList);
 		
 		return quoteResponse;
 	}
