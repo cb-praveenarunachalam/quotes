@@ -3,22 +3,50 @@ package com.vilai.quote.clients;
 import ai.chargebee.Result;
 import ai.chargebee.models.Task;
 import ai.chargebee.AeroAIEnvironment;
+import com.vilai.quote.models.QuotePromptRequest;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AeroAIClient {
 
-    public String init(String prompt) throws Exception {
-        AeroAIEnvironment clientEnv = AeroAIEnvironment.configure()
-                .setConsumerAppName("your-ms-app-name")
-                .setTaskDefnBranch("preview#maadhava.muralidharan@chargebee.com")
-                .setSandboxAPIKey("sk-aero-ai-sandbox-8c64abff-94c8-474a-ad47-9d96cf4ecd28")
-                .setSiteName("hackathon-2025");
+    @Value("${aero.ai.consumer.name}")
+    private String consumerAppName;
 
-        JSONObject input = new JSONObject()
-                .put("User Query", prompt);
+    @Value("${aero.ai.task.defn.branch}")
+    private String taskDefnBranch;
+
+    @Value("${aero.ai.sandbox.api.key}")
+    private String sandboxApiKey;
+
+    @Value("${aero.ai.site.name}")
+    private String siteName;
+
+    private AeroAIEnvironment clientEnv;
+
+    // Initialize the AeroAIEnvironment
+    public void init() {
+        clientEnv = AeroAIEnvironment.configure()
+                .setConsumerAppName(consumerAppName)
+                .setTaskDefnBranch(taskDefnBranch)
+                .setSandboxAPIKey(sandboxApiKey)
+                .setSiteName(siteName);
+    }
+
+    public String retrievePrompt(QuotePromptRequest prompt) throws Exception {
+        if (clientEnv == null) {
+            throw new IllegalStateException("AeroAIEnvironment is not initialized. Call init() first.");
+        }
+
+        System.out.println(prompt.getContractStartDate());
+        System.out.println(prompt.getContractEndDate());
+        JSONObject input = new JSONObject().put("query", prompt.getPrompt())
+                .put("contract_date_from", String.valueOf(prompt.getContractStartDate()))
+                .put("contract_date_to", String.valueOf(prompt.getContractEndDate()));
 
         Task.CreateRequest request = Task.create()
-                .taskDefnId("test.hackathon_task_1")
+                .taskDefnId("test.hackathon_task_2")
                 .taskInput(input);
 
         // Send the request and get the result

@@ -3,16 +3,20 @@ package com.vilai.quote.controller;
 import com.vilai.quote.clients.AeroAIClient;
 import com.vilai.quote.models.*;
 import com.vilai.quote.services.QuotePromptResponseMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/quote")
 public class QuoteController {
 
+	@Autowired
+	private AeroAIClient aeroAIClient;
+
 	@PostMapping("/init")
 	public QuotePromptResponse initQuote(@RequestBody QuotePromptRequest quoteRequest) throws Exception {
-		AeroAIClient aeroAIClient = new AeroAIClient();
-		String result = aeroAIClient.init(quoteRequest.getPrompt());
+		aeroAIClient.init();
+		String result = aeroAIClient.retrievePrompt(quoteRequest);
 		return QuotePromptResponseMapper.convertJsonToQuotePromptResponse(result);
 	}
 
