@@ -2,20 +2,31 @@ package com.vilai.quote.models;
 
 import java.util.List;
 
-public class QuotePromptResponse {
-
-	private String explanation;
+public class QuoteResponse {
+	private long number;
+	private String customerId;
 	private long contractStartDate;
 	private long contractEndDate;
+	private long tcv;
+	private String status;
 	private List<Item> items;
 
-	public String getExplanation() {
-		return explanation;
+	public long getNumber() {
+		return number;
 	}
 	
-	public void setExplanation(String explanation) {
-		this.explanation = explanation;
+	public void setNumber(long number) {
+		this.number = number;
 	}
+	
+	public String getCustomerId() {
+		return customerId;
+	}
+	
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+	
 	public long getContractStartDate() {
 		return contractStartDate;
 	}
@@ -30,6 +41,22 @@ public class QuotePromptResponse {
 	
 	public void setContractEndDate(long contractEndDate) {
 		this.contractEndDate = contractEndDate;
+	}
+	
+	public long getTcv() {
+		return tcv;
+	}
+	
+	public void setTcv(long tcv) {
+		this.tcv = tcv;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	public List<Item> getItems() {
