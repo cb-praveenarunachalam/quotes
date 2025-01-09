@@ -6,7 +6,9 @@ public class Item {
 	private long dateTo;
 	private String currencyCode;
 	private String billingFrequency;
-	private int price;
+	private long price = 1;
+	
+	private int quantity;
 	
 	// Getters and Setters
 	public String getItemPriceName() {
@@ -49,11 +51,11 @@ public class Item {
 		this.billingFrequency = billingFrequency;
 	}
 	
-	public int getPrice() {
+	public long getPrice() {
 		return price;
 	}
 	
-	public void setPrice(int price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 }
