@@ -37,6 +37,7 @@ public class QuoteController {
 		item2.setPrice(1000);
 		
 		quoteResponse.setItems(Collections.singletonList(item));
+		quoteResponse.setItems(Collections.singletonList(item2));
 		
 		return quoteResponse;
 	}
