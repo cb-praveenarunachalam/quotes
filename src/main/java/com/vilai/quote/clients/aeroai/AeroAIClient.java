@@ -42,9 +42,7 @@ public class AeroAIClient {
         if (clientEnv == null) {
             throw new IllegalStateException("AeroAIEnvironment is not initialized. Call init() first.");
         }
-        
-        System.out.println(prompt.getContractStartDate());
-        System.out.println(prompt.getContractEndDate());
+
         JSONObject input = new JSONObject().put("query", prompt.getPrompt())
                                    .put("contractStartDate", prompt.getContractStartDate())
                                    .put("contractEndDate", prompt.getContractEndDate())

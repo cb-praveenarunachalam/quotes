@@ -64,7 +64,7 @@ public class QuoteController {
 		
 		quoteResponse.setItems(quoteRequest.getItems());
 
-		chargebeeClient.createSubscription(quoteResponse);
+		chargebeeClient.createSubscriptionAndRamps(quoteResponse);
 
 		return quoteResponse;
 	}
