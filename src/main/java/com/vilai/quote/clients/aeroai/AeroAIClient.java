@@ -45,7 +45,9 @@ public class AeroAIClient {
 
         System.out.println(prompt.getContractStartDate());
         System.out.println(prompt.getContractEndDate());
-        JSONObject input = new JSONObject().put("query", prompt.getPrompt());
+        JSONObject input = new JSONObject().put("query", prompt.getPrompt())
+                                   .put("contractStartDate", prompt.getContractStartDate())
+                                    .put("contractEndDate", prompt.getContractEndDate());
 
         Task.CreateRequest request = Task.create()
                 .taskDefnId("test.hackathon_task_2")
