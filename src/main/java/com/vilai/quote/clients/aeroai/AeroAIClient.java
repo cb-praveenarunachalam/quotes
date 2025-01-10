@@ -16,16 +16,16 @@ import java.util.List;
 @Component
 public class AeroAIClient {
 
-    @Value("${aero.ai.consumer.name}")
+    @Value("${client.aero.ai.consumer.name}")
     private String consumerAppName;
 
-    @Value("${aero.ai.task.defn.branch}")
+    @Value("${client.aero.ai.task.defn.branch}")
     private String taskDefnBranch;
 
-    @Value("${aero.ai.sandbox.api.key}")
+    @Value("${client.aero.ai.sandbox.api.key}")
     private String sandboxApiKey;
 
-    @Value("${aero.ai.site.name}")
+    @Value("${client.aero.ai.site.name}")
     private String siteName;
 
     private AeroAIEnvironment clientEnv;

@@ -1,5 +1,6 @@
 package com.vilai.quote.controller;
 
+import com.vilai.quote.clients.chargebee.ChargebeeClient;
 import com.vilai.quote.models.*;
 import com.vilai.quote.service.QuoteInitializationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuoteController {
 
 	private final QuoteInitializationService quoteInitializationService;
-	
+	private final ChargebeeClient chargebeeClient;
+
 	@Autowired
-	public QuoteController(QuoteInitializationService quoteInitializationService) {
+	public QuoteController(QuoteInitializationService quoteInitializationService, ChargebeeClient chargebeeClient) {
 		this.quoteInitializationService = quoteInitializationService;
-}
+        this.chargebeeClient = chargebeeClient;
+    }
 
 	@PostMapping("/init")
 	public QuoteInitResponse initQuote(@RequestBody QuoteInitRequest quoteRequest) throws Exception {
@@ -45,7 +48,7 @@ public class QuoteController {
 	}
 
 	@PostMapping("/convert")
-	public QuoteResponse convertToContract(@RequestBody QuoteRequest quoteRequest) {
+	public QuoteResponse convertToContract(@RequestBody QuoteRequest quoteRequest) throws Exception {
 		
 		QuoteResponse quoteResponse = new QuoteResponse();
 		
@@ -60,7 +63,9 @@ public class QuoteController {
 		quoteResponse.setStatus("Closed, Won");
 		
 		quoteResponse.setItems(quoteRequest.getItems());
-		
+
+		chargebeeClient.createSubscription(quoteResponse);
+
 		return quoteResponse;
 	}
 }
