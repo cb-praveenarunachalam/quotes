@@ -19,11 +19,11 @@ public class AeroAIService implements QuoteInitializationService {
 	@Override
 	public QuoteInitResponse initializeQuote(QuoteInitRequest request) throws Exception {
 		aeroAIClient.init();
-		Response response = aeroAIClient.retrievePrompt(request);
+		Response response = aeroAIClient.getResponse(request);
 		QuoteInitResponse quoteInitResponse = new QuoteInitResponse();
-		quoteInitResponse.setExplanation(response.getExplanation());
+		quoteInitResponse.setExplanation(response.getContent().getExplanation());
 		List<Item> items = new ArrayList<>();
-		for(Response.Item item : response.getItems()){
+		for(Response.Item item : response.getContent().getItems()){
 			items.add(convert(item));
 		}
 		quoteInitResponse.setItems(items);
