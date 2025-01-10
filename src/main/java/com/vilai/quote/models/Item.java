@@ -1,7 +1,8 @@
 package com.vilai.quote.models;
 
 public class Item {
-	private String itemPriceName;
+	private String name;
+	private String itemPriceCode;
 	private long dateFrom;
 	private long dateTo;
 	private String currencyCode;
@@ -9,14 +10,29 @@ public class Item {
 	private long price = 1;
 	
 	private int quantity;
-	
-	// Getters and Setters
-	public String getItemPriceName() {
-		return itemPriceName;
+
+	public String getName() {
+		return name;
 	}
 	
-	public void setItemPriceName(String itemPriceName) {
-		this.itemPriceName = itemPriceName;
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getItemPriceCode() {
+		return itemPriceCode;
+	}
+	
+	public void setItemPriceCode(String itemPriceCode) {
+		this.itemPriceCode = itemPriceCode;
 	}
 	
 	public long getDateFrom() {
