@@ -42,7 +42,7 @@ public class ChargebeeClient {
             Item item = startingItems.get(i);
             createRequest = createRequest
                     .subscriptionItemItemPriceId(i, item.getItemPriceCode())
-                    .subscriptionItemUnitPrice(i, item.getPrice())
+                    .subscriptionItemUnitPrice(i, item.getPrice()*100)
                     .subscriptionItemQuantity(i, item.getQuantity());
         }
         Result result = createRequest.request();
@@ -69,7 +69,7 @@ public class ChargebeeClient {
                 Item item = items.get(i);
                 createForSubscriptionRequest = createForSubscriptionRequest
                         .itemsToUpdateItemPriceId(i, item.getItemPriceCode())
-                        .itemsToUpdateUnitPrice(i, item.getPrice())
+                        .itemsToUpdateUnitPrice(i, item.getPrice()*100)
                         .itemsToUpdateQuantity(i, item.getQuantity());
             }
             createForSubscriptionRequest.request();
