@@ -3,12 +3,15 @@ package com.vilai.quote.clients.aeroai;
 import ai.chargebee.AeroAIEnvironment;
 import ai.chargebee.Result;
 import ai.chargebee.models.Task;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vilai.quote.clients.aeroai.model.Response;
 import com.vilai.quote.models.QuoteInitRequest;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class AeroAIClient {
@@ -35,7 +38,7 @@ public class AeroAIClient {
                 .setSiteName(siteName);
     }
 
-    public Response retrievePrompt(QuoteInitRequest prompt) throws Exception {
+    public Response getResponse(QuoteInitRequest prompt) throws Exception {
         if (clientEnv == null) {
             throw new IllegalStateException("AeroAIEnvironment is not initialized. Call init() first.");
         }
@@ -59,7 +62,8 @@ public class AeroAIClient {
 
     private Response covertToResponse(String json) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
+        List<Response> responseList = objectMapper.readValue(json, new TypeReference<List<Response>>(){});
         
-        return objectMapper.readValue(json, Response.class);
+        return responseList.get(0);
     }
 }

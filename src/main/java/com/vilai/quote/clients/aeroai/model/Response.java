@@ -3,23 +3,44 @@ package com.vilai.quote.clients.aeroai.model;
 import java.util.List;
 
 public class Response {
-	private String explanation;
-	private List<Item> items;
+	private String type;
+	private Content content;
 	
-	public String getExplanation() {
-		return explanation;
+	public String getType() {
+		return type;
 	}
 	
-	public void setExplanation(String explanation) {
-		this.explanation = explanation;
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public Content getContent(){
+		return content;
 	}
 
-	public List<Item> getItems() {
-		return items;
+	public void setContent(Content content) {
+		this.content = content;
 	}
-	
-	public void setItems(List<Item> items) {
-		this.items = items;
+
+	public static class Content {
+		private String explanation;
+		private List<Item> items;
+		
+		public String getExplanation() {
+			return explanation;
+		}
+		
+		public void setExplanation(String explanation) {
+			this.explanation = explanation;
+		}
+		
+		public List<Item> getItems() {
+			return items;
+		}
+		
+		public void setItems(List<Item> items) {
+			this.items = items;
+		}
 	}
 
 	public static class Item {
