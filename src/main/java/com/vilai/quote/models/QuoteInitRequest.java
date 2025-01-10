@@ -1,21 +1,14 @@
 package com.vilai.quote.models;
 
-import java.util.List;
+public class QuoteInitRequest {
 
-public class QuotePromptResponse {
-
-	private String explanation;
 	private long contractStartDate;
 	private long contractEndDate;
-	private List<Item> items;
-
-	public String getExplanation() {
-		return explanation;
-	}
 	
-	public void setExplanation(String explanation) {
-		this.explanation = explanation;
-	}
+	private long tcv;
+	
+	private String prompt;
+	
 	public long getContractStartDate() {
 		return contractStartDate;
 	}
@@ -31,12 +24,20 @@ public class QuotePromptResponse {
 	public void setContractEndDate(long contractEndDate) {
 		this.contractEndDate = contractEndDate;
 	}
-	
-	public List<Item> getItems() {
-		return items;
+
+	public long getTcv() {
+		return tcv;
 	}
 	
-	public void setItems(List<Item> items) {
-		this.items = items;
+	public void setTcv(long tcv) {
+		this.tcv = tcv;
+	}
+
+public String getPrompt() {
+		return prompt;
+	}
+	
+	public void setPrompt(String prompt) {
+		this.prompt = prompt;
 	}
 }

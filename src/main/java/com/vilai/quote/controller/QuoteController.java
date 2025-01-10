@@ -1,27 +1,31 @@
 package com.vilai.quote.controller;
 
-import com.vilai.quote.clients.AeroAIClient;
 import com.vilai.quote.models.*;
-import com.vilai.quote.services.QuotePromptResponseMapper;
+import com.vilai.quote.service.QuoteInitializationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/quote")
 public class QuoteController {
 
+	private final QuoteInitializationService quoteInitializationService;
+	
 	@Autowired
-	private AeroAIClient aeroAIClient;
+	public QuoteController(QuoteInitializationService quoteInitializationService) {
+		this.quoteInitializationService = quoteInitializationService;
+}
 
 	@PostMapping("/init")
-	public QuotePromptResponse initQuote(@RequestBody QuotePromptRequest quoteRequest) throws Exception {
-		aeroAIClient.init();
-		String result = aeroAIClient.retrievePrompt(quoteRequest);
-		return QuotePromptResponseMapper.convertJsonToQuotePromptResponse(result);
+	public QuoteInitResponse initQuote(@RequestBody QuoteInitRequest quoteRequest) throws Exception {
+		return quoteInitializationService.initializeQuote(quoteRequest);
 	}
 
-@PostMapping("/")
-public QuoteResponse createQuote(@RequestBody QuoteRequest quoteRequest) {
+	@PostMapping("/")
+	public QuoteResponse createQuote(@RequestBody QuoteRequest quoteRequest) {
 	
 		QuoteResponse quoteResponse = new QuoteResponse();
 		
