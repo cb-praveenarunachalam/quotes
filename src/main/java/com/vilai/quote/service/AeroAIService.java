@@ -24,6 +24,9 @@ public class AeroAIService implements QuoteInitializationService {
 		quoteInitResponse.setExplanation(response.getContent().getExplanation());
 		quoteInitResponse.setContractStartDate(response.getContent().getContractStartDate());
 		quoteInitResponse.setContractEndDate(response.getContent().getContractEndDate());
+		quoteInitResponse.setCompanyName(request.getCompanyName());
+		quoteInitResponse.setCustomerName(request.getCustomerName());
+		quoteInitResponse.setCustomerEmail(request.getCustomerEmail());
 		List<Item> items = new ArrayList<>();
 		for(Response.Item item : response.getContent().getItems()){
 			items.add(convert(item));
@@ -44,14 +47,4 @@ public class AeroAIService implements QuoteInitializationService {
 			item.setPrice(aeroAIItem.getPrice());
 			return item;
 	}
-
-//	private static long parseDate(String dateString) {
-//		try {
-//			// Convert date string (e.g., "2023-07-01") to long timestamp
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			return sdf.parse(dateString).getTime();
-//		} catch (ParseException e) {
-//			throw new RuntimeException("Error parsing date", e);
-//		}
-//	}
 }
