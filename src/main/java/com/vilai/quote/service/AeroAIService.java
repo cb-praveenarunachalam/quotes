@@ -22,12 +22,14 @@ public class AeroAIService implements QuoteInitializationService {
 		Response response = aeroAIClient.getResponse(request);
 		QuoteInitResponse quoteInitResponse = new QuoteInitResponse();
 		quoteInitResponse.setExplanation(response.getContent().getExplanation());
+		quoteInitResponse.setContractStartDate(response.getContent().getContractStartDate());
+		quoteInitResponse.setContractEndDate(response.getContent().getContractEndDate());
 		List<Item> items = new ArrayList<>();
 		for(Response.Item item : response.getContent().getItems()){
 			items.add(convert(item));
 		}
 		quoteInitResponse.setItems(items);
-		//TODO: To fill ramps
+		
 		return quoteInitResponse;
 	}
 
@@ -35,6 +37,11 @@ public class AeroAIService implements QuoteInitializationService {
 			Item item = new Item();
 			item.setName(aeroAIItem.getName());
 			item.setItemPriceCode(aeroAIItem.getItemPriceCode());
+			item.setBillingFrequency(aeroAIItem.getBillingFrequency());
+			item.setCurrencyCode(aeroAIItem.getCurrencyCode());
+			item.setDateFrom(aeroAIItem.getDateFrom());
+			item.setDateTo(aeroAIItem.getDateTo());
+			item.setPrice(aeroAIItem.getPrice());
 			return item;
 	}
 

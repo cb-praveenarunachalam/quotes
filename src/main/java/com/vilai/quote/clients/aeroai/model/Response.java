@@ -24,6 +24,10 @@ public class Response {
 
 	public static class Content {
 		private String explanation;
+		
+		private long contractStartDate;
+		
+		private long contractEndDate;
 		private List<Item> items;
 		
 		public String getExplanation() {
@@ -32,6 +36,22 @@ public class Response {
 		
 		public void setExplanation(String explanation) {
 			this.explanation = explanation;
+		}
+		
+		public long getContractStartDate() {
+			return contractStartDate;
+		}
+		
+		public void setContractStartDate(long contractStartDate) {
+			this.contractStartDate = contractStartDate;
+		}
+		
+		public long getContractEndDate() {
+			return contractEndDate;
+		}
+		
+		public void setContractEndDate(long contractEndDate) {
+			this.contractEndDate = contractEndDate;
 		}
 		
 		public List<Item> getItems() {
@@ -47,6 +67,15 @@ public class Response {
 		private String name;
 		private String itemPriceCode;
 		private String billingFrequency;
+		
+		private long dateFrom;
+		
+		private long dateTo;
+		
+		private long price;
+		private String currencyCode;
+		
+		
 		
 		public String getName() {
 			return name;
@@ -70,6 +99,38 @@ public class Response {
 		
 		public void setBillingFrequency(String billingFrequency) {
 			this.billingFrequency = billingFrequency;
+		}
+		
+		public long getDateFrom() {
+			return dateFrom;
+		}
+		
+		public void setDateFrom(long dateFrom) {
+			this.dateFrom = dateFrom;
+		}
+		
+		public long getDateTo() {
+			return dateTo;
+		}
+		
+		public void setDateTo(long dateTo) {
+			this.dateTo = dateTo;
+		}
+		
+		public long getPrice() {
+			return price;
+		}
+		
+		public void setPrice(long price) {
+			this.price = price;
+		}
+		
+		public String getCurrencyCode() {
+			return currencyCode;
+		}
+		
+		public void setCurrencyCode(String currencyCode) {
+			this.currencyCode = currencyCode;
 		}
 	}
 }
