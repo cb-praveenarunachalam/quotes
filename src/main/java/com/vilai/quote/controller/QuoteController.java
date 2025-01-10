@@ -53,7 +53,7 @@ public class QuoteController {
 		QuoteResponse quoteResponse = new QuoteResponse();
 		
 		quoteResponse.setNumber(101);
-		quoteResponse.setCustomerId("test1");
+		quoteResponse.setCustomerId("BlueWave-Solutions");
 		quoteResponse.setContractStartDate(quoteRequest.getContractStartDate());
 		quoteResponse.setContractEndDate(quoteRequest.getContractEndDate());
 		
