@@ -7,8 +7,8 @@ public class Item {
 	private long dateTo;
 	private String currencyCode;
 	private String billingFrequency;
-	private long price = 1;
-	private int quantity;
+	private long price;
+	private int quantity = 1;
 
 	public String getName() {
 		return name;
