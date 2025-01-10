@@ -53,7 +53,7 @@ public class QuoteController {
 		QuoteResponse quoteResponse = new QuoteResponse();
 		
 		quoteResponse.setNumber(101);
-		quoteResponse.setCustomerId(quoteRequest.getCustomerId());
+		quoteResponse.setCustomerId("test1");
 		quoteResponse.setContractStartDate(quoteRequest.getContractStartDate());
 		quoteResponse.setContractEndDate(quoteRequest.getContractEndDate());
 		

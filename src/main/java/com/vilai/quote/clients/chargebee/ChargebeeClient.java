@@ -31,8 +31,7 @@ public class ChargebeeClient {
 				.filter(item -> item.getDateFrom() == startingItemsDate)
 				.collect(Collectors.toList());
 
-		Subscription.CreateWithItemsRequest createRequest = Subscription.createWithItems(quote.getCustomerId())
-				.id(quote.getCustomerId());
+		Subscription.CreateWithItemsRequest createRequest = Subscription.createWithItems(quote.getCustomerId());
 
 		for (int i = 0; i < startingItems.size(); i++) {
 			Item item = startingItems.get(i);
