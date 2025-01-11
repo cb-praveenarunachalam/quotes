@@ -16,16 +16,16 @@ import java.util.List;
 @Component
 public class AeroAIClient {
 
-    @Value("${aero.ai.consumer.name}")
+    @Value("${client.aero.ai.consumer.name}")
     private String consumerAppName;
 
-    @Value("${aero.ai.task.defn.branch}")
+    @Value("${client.aero.ai.task.defn.branch}")
     private String taskDefnBranch;
 
-    @Value("${aero.ai.sandbox.api.key}")
+    @Value("${client.aero.ai.sandbox.api.key}")
     private String sandboxApiKey;
 
-    @Value("${aero.ai.site.name}")
+    @Value("${client.aero.ai.site.name}")
     private String siteName;
 
     private AeroAIEnvironment clientEnv;
@@ -43,11 +43,12 @@ public class AeroAIClient {
             throw new IllegalStateException("AeroAIEnvironment is not initialized. Call init() first.");
         }
 
-        System.out.println(prompt.getContractStartDate());
-        System.out.println(prompt.getContractEndDate());
         JSONObject input = new JSONObject().put("query", prompt.getPrompt())
                                    .put("contractStartDate", prompt.getContractStartDate())
-                                    .put("contractEndDate", prompt.getContractEndDate());
+                                   .put("contractEndDate", prompt.getContractEndDate())
+                                   .put("companyName", prompt.getCompanyName())
+                                   .put("customerName", prompt.getCustomerName())
+                                   .put("customerEmail", prompt.getCustomerEmail());
 
         Task.CreateRequest request = Task.create()
                 .taskDefnId("test.hackathon_task_2")

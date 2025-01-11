@@ -8,7 +8,6 @@ public class Item {
 	private String currencyCode;
 	private String billingFrequency;
 	private long price;
-	
 	private int quantity = 1;
 
 	public String getName() {
