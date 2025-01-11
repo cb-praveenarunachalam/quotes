@@ -34,7 +34,7 @@ public class EmailService {
         SendGrid sg = new SendGrid(sendGridApiKey);
         Request request = new Request();
         try {
-            File pdfFile = new File("../../../../../resources/Quote.pdf"); // Replace with your file path
+            File pdfFile = new File("/Users/cbit011042/work/quotes/src/main/resources/Quote.pdf"); // Replace with your file path
             byte[] fileContent = Files.readAllBytes(pdfFile.toPath());
             String encodedContent = Base64.getEncoder().encodeToString(fileContent); // Encode file in Base64
 
