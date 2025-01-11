@@ -8,6 +8,14 @@
 		<version>2.7.18</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
+	</repositories>
+
 	<groupId>com.vilai</groupId>
 	<artifactId>quote</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -56,6 +64,25 @@
 			<artifactId>chargebee-java</artifactId>
 			<version>3.28.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.sendgrid</groupId>
+			<artifactId>sendgrid-java</artifactId>
+			<version>4.9.3</version>
+		</dependency>
+
+		<!-- Spring Boot Thymeleaf/Mustache integration -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<!-- PDF conversion library (openhtmltopdf) -->
+		<dependency>
+			<groupId>com.openhtmltopdf</groupId>
+			<artifactId>openhtmltopdf-pdfbox</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
